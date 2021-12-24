@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 class contact{
     String name;
@@ -67,8 +68,8 @@ public class DoublyLinkedList<T> {
         Node temp = head;
         int pos = 0;
         ArrayList<String> money = new ArrayList<>();
-        money.add("NULL");
-        contact a = new contact("NULL","NOT SAVED","NOT SAVED",money);
+        money.add(null);
+        contact a = new contact(null,"NOT SAVED","NOT SAVED",money);
         while (temp.data != x && temp.next != null)
         {
             pos++;
@@ -77,6 +78,23 @@ public class DoublyLinkedList<T> {
         if (temp.data != x)
             System.out.println("Not Found!");
         temp.displayNodeData();
+    }
+
+    public Node search(String name)
+    {
+        Node temp = head;
+        int pos = 0;
+        ArrayList<String> money = new ArrayList<>();
+        money.add(null);
+        contact a = new contact(null,"NOT SAVED","NOT SAVED",money);
+        while (!Objects.equals(temp.data.name, name) && temp.next != null)
+        {
+            pos++;
+            temp = temp.next;
+        }
+        if (!Objects.equals(temp.data.name, name))
+            System.out.println("Not Found!");
+        return temp;
     }
 
     public Node deleteFirst() {
@@ -105,8 +123,10 @@ public class DoublyLinkedList<T> {
         assert temp.next != null;
         temp.next = temp.next.next;
     }
-    public void update() {
-
+    public void update(String name, String workNumber, String mobileNumber) {
+        Node req = search(name);
+        req.data.work_number = workNumber;
+        req.data.mobile_number = mobileNumber;
     }
     public void printLinkedListForward() {
         System.out.println("Printing Doubly LinkedList (head --> tail) ");

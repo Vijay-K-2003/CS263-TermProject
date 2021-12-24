@@ -1,3 +1,5 @@
+import com.sun.tools.jconsole.JConsoleContext;
+
 import java.util.ArrayList;
 public class Runner
 {
@@ -10,6 +12,8 @@ public class Runner
         contact a = new contact("Vansh","7777777777","100",money);
         contact_list.insertLast(a);
         contact_list.search(a);
+        contact_list.printLinkedListForward();
+        contact_list.update("Vansh", "8888888888", "8888888888");
         contact_list.printLinkedListForward();
     }
 }
