@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.HashSet;
 
 class contact{
     String name;
@@ -11,6 +12,21 @@ class contact{
         this.mobile_number = mobile_number;
         this.work_number = work_number;
         this.store = store;
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        contact contact = (contact) o;
+        return mobile_number.equals(contact.mobile_number) && work_number.equals(contact.work_number);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(mobile_number, work_number);
     }
 }
 
@@ -25,6 +41,7 @@ class Node {
                 "\n\tMobile Number: " + data.mobile_number +
                 "\n\tStore: " + data.store + "\n}");
     }
+
 }
 
 public class DoublyLinkedList<T> {
@@ -127,6 +144,55 @@ public class DoublyLinkedList<T> {
         req.data.work_number = workNumber;
         req.data.mobile_number = mobileNumber;
     }
+
+    public Node deleteNode(Node del)
+    {
+        Node temp=del;
+//        del.prev.next=del.next;
+        if (head == null || del == null) {
+            return head;
+        }
+
+        if (head == del)
+        {
+            head = del.next;
+        }
+        if (del.next != null)
+            del.next.prev = del.prev;
+
+        if (del.prev != null)
+            del.prev.next = del.next;
+
+        return head;
+    }
+
+    public Node removeDuplicates()
+    {
+        if ((head) == null)
+            return null;
+
+        HashSet<String> us = new HashSet<>();
+        Node current = head, next;
+
+        while (current != null)
+        {
+            if (us.contains(current.data.name))
+            {
+                System.out.println("HashSet contains " + current.data.name);
+                next = current.next;
+                head = deleteNode(current);
+                current = next;
+            }
+            else
+            {
+                us.add(current.data.name);
+                current = current.next;
+            }
+        }
+        System.out.println("Deleted Duplicates");
+        return head;
+    }
+
     public void printLinkedListForward() {
         System.out.println("Printing Doubly LinkedList (head --> tail) ");
         Node current = head;
@@ -138,10 +204,16 @@ public class DoublyLinkedList<T> {
     }
     public void printLinkedListBackward() {
         System.out.println("Printing Doubly LinkedList (tail --> head) ");
-        Node current = tail;
-        while (current != null) {
-            current.displayNodeData();
-            current = current.prev;
+        Node headCopy = head;
+
+        while(headCopy.next != null)
+        {
+            headCopy = headCopy.next;
+        }
+
+        while (headCopy != null) {
+            headCopy.displayNodeData();
+            headCopy = headCopy.prev;
         }
         System.out.println();
     }

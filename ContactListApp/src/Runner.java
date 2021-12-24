@@ -16,5 +16,10 @@ public class Runner
         contact b = new contact("Mukesh", "9999999999","9999999999", money);
         contact_list.insertLast(b);
         contact_list.printLinkedListBackward();
+        contact c = new contact("Vamsh", "8888888888", "8888888888", money);
+        contact_list.insertLast(c);
+        contact_list.printLinkedListBackward();
+        contact_list.removeDuplicates();
+        contact_list.printLinkedListBackward();
     }
 }
