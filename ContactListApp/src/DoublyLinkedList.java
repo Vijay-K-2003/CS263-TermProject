@@ -193,6 +193,20 @@ public class DoublyLinkedList<T> {
         return head;
     }
 
+
+
+    public void sort()
+    {
+        ArrayList<Node> arrayList = new ArrayList<>();
+        Node headCopy = head;
+        while(headCopy.next != null)
+        {
+            arrayList.add(headCopy);
+            headCopy = headCopy.next;
+        }
+
+    }
+
     public void printLinkedListForward() {
         System.out.println("Printing Doubly LinkedList (head --> tail) ");
         Node current = head;
