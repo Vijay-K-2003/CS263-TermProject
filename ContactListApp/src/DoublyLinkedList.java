@@ -13,7 +13,12 @@ class contact{
         this.work_number = work_number;
         this.store = store;
     }
-
+    contact(String mobile_number, String work_number, ArrayList<String> store) {
+        this.name = mobile_number;
+        this.mobile_number = mobile_number;
+        this.work_number = work_number;
+        this.store = store;
+    }
     @Override
     public boolean equals(Object o)
     {
@@ -195,16 +200,21 @@ public class DoublyLinkedList<T> {
 
 
 
-    public void sort()
+    public void sortNumber()
     {
         ArrayList<Node> arrayList = new ArrayList<>();
         Node headCopy = head;
-        while(headCopy.next != null)
+        while(headCopy != null)
         {
             arrayList.add(headCopy);
             headCopy = headCopy.next;
         }
-
+        MergeSort ms = new MergeSort(arrayList);
+        ms.sortGivenArray();
+        arrayList = ms.getSortedArray();
+        for(int i = 0 ; i < arrayList.size() ; i++) {
+            arrayList.get(i).displayNodeData();
+        }
     }
 
     public void printLinkedListForward() {

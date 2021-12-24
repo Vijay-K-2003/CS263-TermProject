@@ -11,15 +11,17 @@ public class Runner
         contact_list.insertLast(a);
         contact_list.search(a);
         contact_list.printLinkedListForward();
-        contact_list.update("Vansh", "Vamsh", "8888888888", "8888888888");
+        contact_list.update("Vansh", "Vamsh", "9777777770", "9777777770");
         contact_list.printLinkedListForward();
-        contact b = new contact("Mukesh", "9999999999","9999999999", money);
+        contact b = new contact("xukesh", "9888888888","9888888888", money);
         contact_list.insertLast(b);
         contact_list.printLinkedListBackward();
-        contact c = new contact("Vamsh", "8888888888", "8888888888", money);
+        contact c = new contact("Vamsh", "9777777770", "9777777770", money);
         contact_list.insertLast(c);
         contact_list.printLinkedListBackward();
         contact_list.removeDuplicates();
         contact_list.printLinkedListBackward();
+        contact_list.sortNumber();
+
     }
 }
