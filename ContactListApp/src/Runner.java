@@ -21,7 +21,7 @@ public class Runner
         contact_list.printLinkedListBackward();
         contact_list.removeDuplicates();
         contact_list.printLinkedListBackward();
-        contact_list.sortNumber();
+        contact_list.sortName();
 
     }
 }

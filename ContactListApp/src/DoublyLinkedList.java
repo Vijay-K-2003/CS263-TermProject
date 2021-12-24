@@ -200,7 +200,7 @@ public class DoublyLinkedList<T> {
 
 
 
-    public void sortNumber()
+    public void sortName()
     {
         ArrayList<Node> arrayList = new ArrayList<>();
         Node headCopy = head;

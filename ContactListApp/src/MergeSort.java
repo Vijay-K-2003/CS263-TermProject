@@ -15,7 +15,7 @@ public class MergeSort {
         divide(0, this.inputArray.size()-1);
     }
 
-    public void divide(int startIndex,int endIndex){
+    public void divide(int startIndex, int endIndex){
 
         if(startIndex<endIndex && (endIndex-startIndex)>=1) {
             int mid = (endIndex + startIndex)/2;
@@ -33,22 +33,22 @@ public class MergeSort {
         int leftIndex = startIndex;
         int rightIndex = midIndex+1;
 
-        while(leftIndex<=midIndex && rightIndex<=endIndex){
+        while(leftIndex <= midIndex && rightIndex <= endIndex) {
             if(inputArray.get(leftIndex).data.name.compareTo(inputArray.get(rightIndex).data.name) <= 0){
                 mergedSortedArray.add(inputArray.get(leftIndex));
                 leftIndex++;
-            }else{
+            } else {
                 mergedSortedArray.add(inputArray.get(rightIndex));
                 rightIndex++;
             }
         }
 
-        while(leftIndex<=midIndex){
+        while(leftIndex <= midIndex) {
             mergedSortedArray.add(inputArray.get(leftIndex));
             leftIndex++;
         }
 
-        while(rightIndex<=endIndex){
+        while(rightIndex <= endIndex){
             mergedSortedArray.add(inputArray.get(rightIndex));
             rightIndex++;
         }
