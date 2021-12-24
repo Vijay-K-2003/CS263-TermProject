@@ -67,9 +67,6 @@ public class DoublyLinkedList<T> {
     {
         Node temp = head;
         int pos = 0;
-        ArrayList<String> money = new ArrayList<>();
-        money.add(null);
-        contact a = new contact(null,"NOT SAVED","NOT SAVED",money);
         while (temp.data != x && temp.next != null)
         {
             pos++;
@@ -84,9 +81,6 @@ public class DoublyLinkedList<T> {
     {
         Node temp = head;
         int pos = 0;
-        ArrayList<String> money = new ArrayList<>();
-        money.add(null);
-        contact a = new contact(null,"NOT SAVED","NOT SAVED",money);
         while (!Objects.equals(temp.data.name, name) && temp.next != null)
         {
             pos++;
@@ -123,8 +117,13 @@ public class DoublyLinkedList<T> {
         assert temp.next != null;
         temp.next = temp.next.next;
     }
-    public void update(String name, String workNumber, String mobileNumber) {
+    public void update(String name, String newName,String workNumber, String mobileNumber) {
+        if(workNumber.length() != 10 || mobileNumber.length() != 10)
+        {
+            System.out.println("Invalid Reenter Phone Number data");
+        }
         Node req = search(name);
+        req.data.name = newName;
         req.data.work_number = workNumber;
         req.data.mobile_number = mobileNumber;
     }
