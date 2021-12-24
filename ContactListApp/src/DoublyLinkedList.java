@@ -230,8 +230,8 @@ public class DoublyLinkedList<T> {
 
     public void createGraph(ArrayList<Node> al)
     {
-        Node[][] mat = new Node[al.size()][al.size()];
-        
+        int[][] mat = new int[al.size()][al.size()];
+
     }
 
     public void printLinkedListForward() {
