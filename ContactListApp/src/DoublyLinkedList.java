@@ -153,7 +153,7 @@ public class DoublyLinkedList<T> {
     public Node deleteNode(Node del)
     {
         Node temp=del;
-//        del.prev.next=del.next;
+
         if (head == null || del == null) {
             return head;
         }
@@ -216,6 +216,23 @@ public class DoublyLinkedList<T> {
             arrayList.get(i).displayNodeData();
         }
     }
+    public ArrayList<Node> getArrayList()
+    {
+        ArrayList<Node> arrayList = new ArrayList<>();
+        Node headCopy = head;
+        while(headCopy != null)
+        {
+            arrayList.add(headCopy);
+            headCopy = headCopy.next;
+        }
+        return arrayList;
+    }
+
+    public void createGraph(ArrayList<Node> al)
+    {
+        Node[][] mat = new Node[al.size()][al.size()];
+        
+    }
 
     public void printLinkedListForward() {
         System.out.println("Printing Doubly LinkedList (head --> tail) ");
@@ -241,6 +258,4 @@ public class DoublyLinkedList<T> {
         }
         System.out.println();
     }
-
-    
 }

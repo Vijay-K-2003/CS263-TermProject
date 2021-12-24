@@ -22,6 +22,7 @@ public class Runner
         contact_list.removeDuplicates();
         contact_list.printLinkedListBackward();
         contact_list.sortName();
+        ArrayList<Node> arrayList = contact_list.getArrayList();
 
     }
 }
