@@ -1,0 +1,15 @@
+import java.util.ArrayList;
+public class Runner
+{
+    public static void main(String[] args) {
+        DoublyLinkedList contact_list = new DoublyLinkedList();
+        System.out.println("Enter 1 to add a contact");
+        ArrayList<String> money = new ArrayList<>();
+        money.add("300 paid to Sai");
+        money.add("500 took from Nivas");
+        contact a = new contact("Vansh","7777777777","100",money);
+        contact_list.insertLast(a);
+        contact_list.search(a);
+        contact_list.printLinkedListForward();
+    }
+}
