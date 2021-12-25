@@ -25,5 +25,23 @@ public class Runner
         ArrayList<Node> arrayList = contact_list.getArrayList();
         contact_list.createGraph(arrayList);
         contact_list.sortNumber();
+
+        LRUCache lruc = contact_list.createCache(5);
+        contact_list.referLRUC(contact_list.search("Vamsh"), lruc);
+        contact_list.referLRUC(contact_list.search("xukesh"), lruc);
+        contact d = new contact("Vams", "9777777770", "9777777770", money);
+        contact_list.insertFirst(d);
+        contact e = new contact("Vam", "9777777770", "9777777770", money);
+        contact_list.insertFirst(e);
+        contact f = new contact("Va", "9777777770", "9777777770", money);
+        contact_list.insertFirst(f);
+        contact_list.referLRUC(contact_list.search("Vams"), lruc);
+        contact_list.referLRUC(contact_list.search("Vam"), lruc);
+        contact_list.referLRUC(contact_list.search("Va"), lruc);
+        contact_list.displayCache(lruc);
+        contact g = new contact("VJK", "7777777777", "9696969696", money);
+        contact_list.insertFirst(g);
+        contact_list.referLRUC(contact_list.search("VJK"), lruc);
+        contact_list.displayCache(lruc);
     }
 }

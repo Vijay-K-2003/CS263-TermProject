@@ -396,6 +396,25 @@ public class DoublyLinkedList<T> {
         System.out.println();
     }
 
+    public LRUCache createCache(int capacity) {
+        LRUCache lruc = new LRUCache(capacity);
+        return lruc;
+    }
+
+    public void referLRUC(Node node, LRUCache lruc) {
+        lruc.refer(node);
+    }
+
+    public void displayCache(LRUCache lruc) {
+        lruc.display();
+    }
+
+    public void deleteAll() {
+        while(head != null) {
+            deleteFirst();
+        }
+    }
+
     public Node get(int index) {
         Node f = head;
         if(index == 0)
