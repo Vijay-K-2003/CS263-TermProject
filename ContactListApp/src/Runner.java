@@ -1,5 +1,3 @@
-package CS263;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -28,7 +26,7 @@ public class Runner {
         System.out.println("|_______________________________________________________________|");
         System.out.println("|       5                   |       Sort the contact list       |");
         System.out.println("|_______________________________________________________________|");
-        System.out.println("|       6                   |       Latest Search               |");
+        System.out.println("|       6                   |       Create Cache Memory         |");
         System.out.println("|_______________________________________________________________|");
         System.out.println("|       7                   |       Search Result               |");
         System.out.println("|_______________________________________________________________|");

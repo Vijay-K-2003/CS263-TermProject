@@ -1,4 +1,3 @@
-package CS263;
 class HeapSort {
 
     public void heapify(DoublyLinkedList a, int n, int i)
