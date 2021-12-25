@@ -1,22 +1,15 @@
+package CS263;
+
 import java.util.*;
 
 class contact{
     String name;
     String mobile_number;
-    String work_number;
-    ArrayList store;
 
-    contact(String name, String mobile_number, String work_number, ArrayList<String> store){
+    contact(String name, String mobile_number){
         this.name = name;
         this.mobile_number = mobile_number;
-        this.work_number = work_number;
-        this.store = store;
-    }
-    contact(String mobile_number, String work_number, ArrayList<String> store) {
-        this.name = mobile_number;
-        this.mobile_number = mobile_number;
-        this.work_number = work_number;
-        this.store = store;
+
     }
     @Override
     public boolean equals(Object o)
@@ -24,13 +17,13 @@ class contact{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         contact contact = (contact) o;
-        return mobile_number.equals(contact.mobile_number) && work_number.equals(contact.work_number);
+        return mobile_number.equals(contact.mobile_number);
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(mobile_number, work_number);
+        return Objects.hash(mobile_number);
     }
 }
 
@@ -40,10 +33,10 @@ class Node {
     public Node prev;
 
     public void displayNodeData() {
-        System.out.println("{\n\tName : " + data.name +
-                "\n\tWork Number: " + data.work_number +
-                "\n\tMobile Number: " + data.mobile_number +
-                "\n\tStore: " + data.store + "\n}");
+        if(!(data.name.compareTo(data.mobile_number)==0))
+            System.out.println("Name : " + data.name + "              Mobile Number: " + data.mobile_number );
+        else
+            System.out.println("Mobile Number: " + data.mobile_number);
     }
 
 }
@@ -102,13 +95,13 @@ public class DoublyLinkedList<T> {
     {
         Node temp = head;
         int pos = 0;
-        while (!Objects.equals(temp.data.name, name) && temp.next != null)
+        while (!Objects.equals(temp.data.name, name))
         {
             pos++;
             temp = temp.next;
         }
         if (!Objects.equals(temp.data.name, name))
-            System.out.println("Not Found!");
+            return null;
         return temp;
     }
 
@@ -138,14 +131,13 @@ public class DoublyLinkedList<T> {
         assert temp.next != null;
         temp.next = temp.next.next;
     }
-    public void update(String name, String newName,String workNumber, String mobileNumber) {
-        if(workNumber.length() != 10 || mobileNumber.length() != 10)
+    public void update(String name, String newName, String mobileNumber) {
+        if(mobileNumber.length() != 10)
         {
             System.out.println("Invalid Reenter Phone Number data");
         }
         Node req = search(name);
         req.data.name = newName;
-        req.data.work_number = workNumber;
         req.data.mobile_number = mobileNumber;
     }
 
@@ -180,7 +172,7 @@ public class DoublyLinkedList<T> {
 
         while (current != null)
         {
-            if (us.contains(current.data.name))
+            if (us.contains(current.data.name) && current.data.name != null)
             {
                 System.out.println("HashSet contains " + current.data.name);
                 next = current.next;

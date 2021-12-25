@@ -1,17 +1,18 @@
+package CS263;
 class HeapSort {
 
     public void heapify(DoublyLinkedList a, int n, int i)
     {
-        int largest = i; // Initialize largest as root
-        int left = 2 * i + 1; // left child
-        int right = 2 * i + 2; // right child
-        // If left child is larger than root
+        int largest = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+
         if (left < n && (a.get(left).data.mobile_number.compareTo(a.get(largest).data.mobile_number) > 0))
             largest = left;
-        // If right child is larger than root
+
         if (right < n && (a.get(right).data.mobile_number.compareTo(a.get(largest).data.mobile_number) > 0))
             largest = right;
-        // If root is not largest
+
         if (largest != i) {
 
             Node temp = a.get(largest);
