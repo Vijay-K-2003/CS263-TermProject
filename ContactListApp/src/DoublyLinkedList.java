@@ -39,7 +39,7 @@ class Node {
 
 }
 
-public class DoublyLinkedList<T> {
+public class DoublyLinkedList {
 
     private Node head;
     private Node tail;
@@ -402,6 +402,18 @@ public class DoublyLinkedList<T> {
     public void deleteAll() {
         while(head != null) {
             deleteFirst();
+        }
+    }
+
+    public void searchResults(ArrayList<Node> arr, String key){
+        SearchResults ob = new SearchResults();
+        int last = arr.size() - 1;
+        int m = ob.binarySearch(arr,0,last,key);
+        System.out.println("Search Results : ");
+        for(int i=0;i<arr.size();i++){
+            if((arr.get(i).data.name.substring(0,key.length())).compareTo(key)==0){
+                arr.get(i).displayNodeData();
+            }
         }
     }
 

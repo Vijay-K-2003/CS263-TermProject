@@ -28,18 +28,22 @@ public class Runner {
         System.out.println("|_______________________________________________________________|");
         System.out.println("|       6                   |       Create Cache Memory         |");
         System.out.println("|_______________________________________________________________|");
-        System.out.println("|       7                   |       Search Result               |");
+        System.out.println("|       7                   |       Refer to Cache              |");
         System.out.println("|_______________________________________________________________|");
-        System.out.println("|       8                   |       Split the bill              |");
+        System.out.println("|       8                   |       Display Cache               |");
         System.out.println("|_______________________________________________________________|");
-        System.out.println("|       9                   |       Print contact details       |");
+        System.out.println("|       9                   |       Search Results by input     |");
         System.out.println("|_______________________________________________________________|");
-        System.out.println("|       10                  |       Exit                        |");
+        System.out.println("|       10                  |       Split the bill              |");
+        System.out.println("|_______________________________________________________________|");
+        System.out.println("|       11                  |       Print contact details       |");
+        System.out.println("|_______________________________________________________________|");
+        System.out.println("|       12                  |       Exit                        |");
         System.out.println("|_______________________________________________________________|");
         System.out.println();
         System.out.print("Choose an option from above table to perform corresponding operation : ");
         int sentinel = sc.nextInt();
-        while (sentinel>=1 && sentinel<10) {
+        while (sentinel>=1 && sentinel<12) {
             if (sentinel == 1) {
                 System.out.println("came in");
                 if (contact_list.isEmpty()) {
@@ -141,12 +145,29 @@ public class Runner {
                 cache1 = contact_list_unnamed.createCache(contact_list_unnamed.size/10);
             }
             else if(sentinel == 7){
-
+                System.out.println("Enter Contact to refer to Cache");
+                String name = sc.next();
+                contact_list.referLRUC(contact_list.search(name), cache);
+                contact_list_unnamed.referLRUC(contact_list.search(name), cache1);
             }
             else if(sentinel == 8){
-
+                System.out.println("Contact List with Names Cache : ");
+                contact_list.displayCache(cache);
+                System.out.println("Contact List without Names Cache : ");
+                contact_list_unnamed.displayCache(cache1);
             }
             else if(sentinel == 9){
+                System.out.println("Enter String for Searching");
+                String key = sc.next();
+                ArrayList<Node> arr = contact_list.getArrayList();
+                ArrayList<Node> arr1 = contact_list_unnamed.getArrayList();
+                contact_list.searchResults(arr, key);
+                contact_list_unnamed.searchResults(arr1, key);
+            }
+            else if(sentinel == 10){
+
+            }
+            else if(sentinel == 11){
                 System.out.println("Printing named contact list");
                 contact_list.printLinkedListForward();
                 System.out.println("Printing unnamed contact list");
