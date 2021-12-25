@@ -45,7 +45,6 @@ public class Runner {
         int sentinel = sc.nextInt();
         while (sentinel>=1 && sentinel<12) {
             if (sentinel == 1) {
-                System.out.println("came in");
                 if (contact_list.isEmpty()) {
                     System.out.print("Do you want to add emergency contacts(Y/N) : ");
                     char sent = sc.next().charAt(0);
@@ -132,12 +131,16 @@ public class Runner {
                     contact_list.printLinkedListForward();
                     HeapSort sort2 = new HeapSort();
                     sort2.heapSort(contact_list_unnamed, contact_list_unnamed.size);
+
                     contact_list_unnamed.printLinkedListForward();
                 }
                 else{
                     ArrayList a = contact_list.getArrayList();
                     RandomisedQuickSort sort = new RandomisedQuickSort(a);
-                    contact_list.printLinkedListForward();
+                    ArrayList<Node> arr = sort.getSortedArray();
+                    for(int i = 0 ; i < arr.size() ; i++){
+                        arr.get(i).displayNodeData();
+                    }
                 }
             }
             else if(sentinel == 6){
@@ -147,8 +150,12 @@ public class Runner {
             else if(sentinel == 7){
                 System.out.println("Enter Contact to refer to Cache");
                 String name = sc.next();
-                contact_list.referLRUC(contact_list.search(name), cache);
-                contact_list_unnamed.referLRUC(contact_list.search(name), cache1);
+                System.out.println("Is it Named? Y/N");
+                String check = sc.next();
+                if(check.equals("Y"))
+                    contact_list.referLRUC(contact_list.search(name), cache);
+                else
+                    contact_list_unnamed.referLRUC(contact_list.search(name), cache1);
             }
             else if(sentinel == 8){
                 System.out.println("Contact List with Names Cache : ");
