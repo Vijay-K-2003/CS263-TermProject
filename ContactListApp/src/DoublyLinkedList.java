@@ -229,6 +229,16 @@ public class DoublyLinkedList<T> {
             arrayList.get(i).displayNodeData();
         }
     }
+    public void sort()
+    {
+        Scanner s = new Scanner(System.in);
+        System.out.println("Do you have enough memory? Y / N");
+        String in = s.next();
+        if(in.equals("Y"))
+            sortName();
+        else
+            sortNumber();
+    }
     public ArrayList<Node> getArrayList()
     {
         ArrayList<Node> arrayList = new ArrayList<>();
