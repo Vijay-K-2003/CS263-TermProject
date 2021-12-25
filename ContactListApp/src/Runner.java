@@ -23,6 +23,7 @@ public class Runner
         contact_list.printLinkedListBackward();
         contact_list.sortName();
         ArrayList<Node> arrayList = contact_list.getArrayList();
+        contact_list.createGraph(arrayList);
 
     }
 }

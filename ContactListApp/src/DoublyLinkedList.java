@@ -1,12 +1,11 @@
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.HashSet;
+import java.util.*;
 
 class contact{
     String name;
     String mobile_number;
     String work_number;
     ArrayList store;
+
     contact(String name, String mobile_number, String work_number, ArrayList<String> store){
         this.name = name;
         this.mobile_number = mobile_number;
@@ -230,10 +229,124 @@ public class DoublyLinkedList<T> {
 
     public void createGraph(ArrayList<Node> al)
     {
+        System.out.println("Representation used-");
+        for(int i=0;i<al.size();i++){
+            System.out.println(al.get(i).data.name + "-" + i);
+        }
         int[][] mat = new int[al.size()][al.size()];
-
+        for(int x=0;x<al.size();x++){
+            for(int y=0;y<al.size();y++){
+                mat[x][y]=0;
+            }
+        }
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter number of debt transactions:");
+        int n =sc.nextInt();
+        System.out.println("Enter (src,dest,money) in this specified format!");
+        for(int k=0;k<n;k++){
+            int s=sc.nextInt();
+            int d=sc.nextInt();
+            int m=sc.nextInt();
+            System.out.println("\n");
+            mat[s][d]=m;
+        }
+        minCashFlow(mat);
     }
 
+    // A utility function that returns
+    // index of minimum value in arr[]
+    static int getMin(int arr[])
+    {
+        int minInd = 0;
+        for (int i = 1; i < arr.length; i++)
+            if (arr[i] < arr[minInd])
+                minInd = i;
+        return minInd;
+    }
+
+    // A utility function that returns
+    // index of maximum value in arr[]
+    static int getMax(int arr[])
+    {
+
+        int maxInd = 0;
+        for (int i = 1; i < arr.length; i++)
+            if (arr[i] > arr[maxInd])
+                maxInd = i;
+        return maxInd;
+    }
+
+    // A utility function to return minimum of 2 values
+    static int minOf2(int x, int y)
+    {
+        return (x < y) ? x: y;
+    }
+
+    // amount[p] indicates the net amount
+    // to be credited/debited to/from person 'p'
+    // If amount[p] is positive, then
+    // i'th person will amount[i]
+    // If amount[p] is negative, then
+    // i'th person will give -amount[i]
+    static void minCashFlowRec(int amount[])
+    {
+        // Find the indexes of minimum and
+        // maximum values in amount[]
+        // amount[mxCredit] indicates the maximum amount
+        // to be given (or credited) to any person .
+        // And amount[mxDebit] indicates the maximum amount
+        // to be taken(or debited) from any person.
+        // So if there is a positive value in amount[],
+        // then there must be a negative value
+        int mxCredit = getMax(amount), mxDebit = getMin(amount);
+
+        // If both amounts are 0, then
+        // all amounts are settled
+        if (amount[mxCredit] == 0 && amount[mxDebit] == 0)
+            return;
+
+        // Find the minimum of two amounts
+        int min = minOf2(-amount[mxDebit], amount[mxCredit]);
+        amount[mxCredit] -= min;
+        amount[mxDebit] += min;
+
+        // If minimum is the maximum amount to be
+        System.out.println("Person " + mxDebit + " pays " + min
+                + " to " + "Person " + mxCredit);
+
+        // Recur for the amount array.
+        // Note that it is guaranteed that
+        // the recursion would terminate
+        // as either amount[mxCredit]  or
+        // amount[mxDebit] becomes 0
+        minCashFlowRec(amount);
+    }
+
+    // Given a set of persons as graph[]
+    // where graph[i][j] indicates
+    // the amount that person i needs to
+    // pay person j, this function
+    // finds and prints the minimum
+    // cash flow to settle all debts.
+    static void minCashFlow(int graph[][])
+    {
+        int N=graph[0].length;
+        // Create an array amount[],
+        // initialize all value in it as 0.
+        int amount[]=new int[graph[0].length];
+
+        // Calculate the net amount to
+        // be paid to person 'p', and
+        // stores it in amount[p]. The
+        // value of amount[p] can be
+        // calculated by subtracting
+        // debts of 'p' from credits of 'p'
+        for (int p = 0; p < N; p++)
+            for (int i = 0; i < N; i++)
+                amount[p] += (graph[i][p] - graph[p][i]);
+
+        minCashFlowRec(amount);
+    }
     public void printLinkedListForward() {
         System.out.println("Printing Doubly LinkedList (head --> tail) ");
         Node current = head;
