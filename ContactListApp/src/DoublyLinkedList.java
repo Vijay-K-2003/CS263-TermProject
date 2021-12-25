@@ -197,8 +197,6 @@ public class DoublyLinkedList<T> {
         return head;
     }
 
-
-
     public void sortName()
     {
         ArrayList<Node> arrayList = new ArrayList<>();
@@ -211,6 +209,22 @@ public class DoublyLinkedList<T> {
         MergeSort ms = new MergeSort(arrayList);
         ms.sortGivenArray();
         arrayList = ms.getSortedArray();
+        for(int i = 0 ; i < arrayList.size() ; i++) {
+            arrayList.get(i).displayNodeData();
+        }
+    }
+    public void sortNumber()
+    {
+        ArrayList<Node> arrayList = new ArrayList<>();
+        Node headCopy = head;
+        while(headCopy != null)
+        {
+            arrayList.add(headCopy);
+            headCopy = headCopy.next;
+        }
+        RandomisedQuickSort hs = new RandomisedQuickSort(arrayList);
+        hs.startQuickStart(0, arrayList.size()-1);
+        arrayList = hs.getSortedArray();
         for(int i = 0 ; i < arrayList.size() ; i++) {
             arrayList.get(i).displayNodeData();
         }
@@ -328,7 +342,7 @@ public class DoublyLinkedList<T> {
     // pay person j, this function
     // finds and prints the minimum
     // cash flow to settle all debts.
-    static void minCashFlow(int graph[][])
+    public void minCashFlow(int graph[][])
     {
         int N=graph[0].length;
         // Create an array amount[],
@@ -370,5 +384,15 @@ public class DoublyLinkedList<T> {
             headCopy = headCopy.prev;
         }
         System.out.println();
+    }
+
+    public Node get(int index) {
+        Node f = head;
+        if(index == 0)
+            return f;
+        else
+            for(int i=0;i<index-1;i++)
+                f = f.next;
+        return f;
     }
 }

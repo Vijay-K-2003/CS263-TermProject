@@ -24,6 +24,6 @@ public class Runner
         contact_list.sortName();
         ArrayList<Node> arrayList = contact_list.getArrayList();
         contact_list.createGraph(arrayList);
-
+        contact_list.sortNumber();
     }
 }
