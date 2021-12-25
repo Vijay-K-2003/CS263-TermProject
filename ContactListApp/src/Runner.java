@@ -165,7 +165,7 @@ public class Runner {
                 contact_list_unnamed.searchResults(arr1, key);
             }
             else if(sentinel == 10){
-
+                contact_list.createGraph(contact_list.getArrayList());
             }
             else if(sentinel == 11){
                 System.out.println("Printing named contact list");
