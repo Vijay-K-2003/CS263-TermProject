@@ -13,16 +13,18 @@ public class LRUCache {
     }
 
     public void refer(Node node) {
+        // .contains() has O(1) time complexity
         if (!hashSet.contains(node)) {
+            // condition where cache is full and we need to remove something
             if (doublyQueue.size() == CACHE_SIZE) {
-                Node last = doublyQueue.removeLast();
+                Node last = doublyQueue.removeLast();       // Least recently used page or data is removed
                 hashSet.remove(last);
             }
         } else {
             doublyQueue.remove(node);
         }
-        doublyQueue.push(node);
-        hashSet.add(node);
+        doublyQueue.push(node);                             // make the new node as the most recently used
+        hashSet.add(node);                                  // add it to hashset also
     }
 
     public void display() {

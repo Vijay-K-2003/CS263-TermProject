@@ -43,9 +43,9 @@ public class Runner {
         System.out.println();
         System.out.print("Choose an option from above table to perform corresponding operation : ");
         int sentinel = sc.nextInt();
-        while (sentinel>=1 && sentinel<12) {
+        while (sentinel >= 1 && sentinel < 12) {
             if (sentinel == 1) {
-                if (contact_list.isEmpty()) {
+                if (contact_list.isEmpty() && contact_list_unnamed.isEmpty()) {
                     System.out.print("Do you want to add emergency contacts(Y/N) : ");
                     char sent = sc.next().charAt(0);
                     if (sent == 'Y') {
@@ -64,6 +64,28 @@ public class Runner {
                                 contact add = new contact(name, a);
                                 contact_list.insertFirst(add);
                             } else {
+                                contact add = new contact(a, a);
+                                contact_list_unnamed.insertLast(add);
+                            }
+                        }
+                    } else {
+                        System.out.print("Enter mobile number : ");
+                        String a = sc.next();
+                        if (a.length() != 10) {
+                            System.out.println("Enter correct mobile number of 10 digits");
+                        }
+                        else
+                        {
+                            System.out.print("Do you want to add a name to the contact (Y/N) : ");
+                            char bool = sc.next().charAt(0);
+                            if (bool == 'Y')
+                            {
+                                System.out.print("Enter the name : ");
+                                String name = sc.next();
+                                contact add = new contact(name, a);
+                                contact_list.insertFirst(add);
+                            } else
+                            {
                                 contact add = new contact(a, a);
                                 contact_list_unnamed.insertLast(add);
                             }
@@ -126,16 +148,21 @@ public class Runner {
                 System.out.print("Press 1 if you have memory : ");
                 input = sc.next().charAt(0);
                 if(input == '1'){
-                    ArrayList a = contact_list.getArrayList();
+                    ArrayList<Node> a = contact_list.getArrayList();
                     MergeSort sort = new MergeSort(a);
-                    contact_list.printLinkedListForward();
-                    HeapSort sort2 = new HeapSort();
-                    sort2.heapSort(contact_list_unnamed, contact_list_unnamed.size);
-
-                    contact_list_unnamed.printLinkedListForward();
+                    ArrayList<Node> arr = sort.getSortedArray();
+                    for(int i = 0 ; i < arr.size() ; i++) {
+                        arr.get(i).displayNodeData();
+                    }
+                    if(contact_list_unnamed.size != 0)
+                    {
+                        HeapSort sort2 = new HeapSort();
+                        sort2.heapSort(contact_list_unnamed, contact_list_unnamed.size);
+                        contact_list_unnamed.printLinkedListForward();
+                    }
                 }
                 else{
-                    ArrayList a = contact_list.getArrayList();
+                    ArrayList<Node> a = contact_list.getArrayList();
                     RandomisedQuickSort sort = new RandomisedQuickSort(a);
                     ArrayList<Node> arr = sort.getSortedArray();
                     for(int i = 0 ; i < arr.size() ; i++){
@@ -164,12 +191,15 @@ public class Runner {
                 contact_list_unnamed.displayCache(cache1);
             }
             else if(sentinel == 9){
-                System.out.println("Enter String for Searching");
+                System.out.print("Enter String for Searching : ");
                 String key = sc.next();
-                ArrayList<Node> arr = contact_list.getArrayList();
-                ArrayList<Node> arr1 = contact_list_unnamed.getArrayList();
-                contact_list.searchResults(arr, key);
-                contact_list_unnamed.searchResults(arr1, key);
+                if (Character.isDigit(key.charAt(0))) {
+                    ArrayList<Node> arr1 = contact_list_unnamed.getArrayList();
+                    contact_list_unnamed.searchResults(arr1, key);
+                } else {
+                    ArrayList<Node> arr = contact_list.getArrayList();
+                    contact_list.searchResults(arr, key);
+                }
             }
             else if(sentinel == 10){
                 contact_list.createGraph(contact_list.getArrayList());
